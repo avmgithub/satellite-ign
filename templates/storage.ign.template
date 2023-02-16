@@ -1,0 +1,23 @@
+[
+    {
+        "path": "/etc/hostname",
+        "mode": 420,
+        "contents": {
+            "source": "data:text/plain;charset=utf-8;base64,bWFzdGVyMC5vY3A0LmV4YW1wbGUuY29tCg=="
+        }
+    },
+    {
+        "path": "/etc/sysconfig/network-scripts/ifcfg-eth0",
+        "mode": 420,
+        "contents": {
+            "source": "data:text/plain;charset=utf-8;base64,IyBHZW5lcmF0ZWQgYnkgY3JlYXRlaWducyAKVFlQRT1FdGhlcm5ldApOQU1FPSJlbnMxOTIiCkRFVklDRT0iZW5zMTkyIgpPTkJPT1Q9eWVzCk5FVEJPT1Q9eWVzCkJPT1RQUk9UTz1ub25lCklQQUREUj0iMTAuODAuMTU4LjciCk5FVE1BU0s9IjI1NS4yNTUuMjU1LjI0MCIKR0FURVdBWT0iMTAuODAuMTU4LjEiCkROUzE9IjEwLjgwLjE1OC41Ig=="
+        }
+    },
+    {
+        "path": "/etc/chrony.conf",
+        "mode": 420,
+        "contents": {
+            "source": "data:text/plain;charset=utf-8;base64,c2VydmVyIGNsb2NrLmNvcnAucmVkaGF0LmNvbSBpYnVyc3QKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdAptYWtlc3RlcCAxLjAgMwpydGNzeW5jCmxvZ2RpciAvdmFyL2xvZy9jaHJvbnkK"
+        }
+    }
+]

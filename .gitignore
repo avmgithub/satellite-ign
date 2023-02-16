@@ -1,0 +1,5 @@
+input.tfvars
+*.tfstate
+*.tfstate.*
+satelliteUser.ign
+*.[0-9]

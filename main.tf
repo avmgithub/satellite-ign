@@ -25,18 +25,21 @@ data "local_file" "ssh_public_key" {
 #   filename = "./hostname.${count.index}"
 # }
 
+/*
 data "local_file" "ifcfg" {
   depends_on = [resource.null_resource.configure_ifcfg]
 
-  count = length(var.host_details)
+  count    = length(var.host_details)
   filename = "./ifcfg.${count.index}"
 }
+*/
 
 # file and content to add to the ignition template for login to nodes
 data "local_file" "sat_user_file" {
-  filename = "./satelliteUser.ign"
+  filename = null_resource.add_sshkey_satuser.triggers.filename
 }
 
+/*
 data "local_file" "hostname_files" {
   depends_on = [resource.null_resource.create_hostname_file]
 
@@ -51,7 +54,9 @@ data "local_file" "host_attach_ign_files" {
   count = length(var.host_details)
   filename = "./host_ign_file.${count.index}"
 }
+*/
 
+/*
 resource "null_resource" "configure_ifcfg" {
 #  for_each = toset(var.ip_addrs)
   for_each = { for i, hd in var.host_details : i => hd }
@@ -61,12 +66,16 @@ resource "null_resource" "configure_ifcfg" {
 EOT
   }
 }
+*/
 
 resource "null_resource" "add_sshkey_satuser" {
-#  for_each = toset(var.ip_addrs)
+
+  triggers = {
+    filename = "./templates/satelliteUser.ign"
+  }
   provisioner "local-exec" {
-    command                   = <<EOT
-./scripts/addsshkey.sh "${data.local_file.ssh_public_key.content}" ${data.local_file.sat_user_template.filename}  ${data.local_file.sat_user_file.filename}
+    command = <<EOT
+./scripts/addsshkey.sh "${data.local_file.ssh_public_key.content}" ${data.local_file.sat_user_template.filename} "./templates/satelliteUser.ign"
 EOT
   }
 }
@@ -74,6 +83,7 @@ EOT
 # Creates /etc/hostname file that will end up inside each VM node
 # $output_hostname_file=$1
 # $hostname=$2
+/*
 resource "null_resource" "create_hostname_file" {
   for_each = { for i, hd in var.host_details : i => hd }
   provisioner "local-exec" {
@@ -82,6 +92,7 @@ resource "null_resource" "create_hostname_file" {
 EOT
   }
 }
+*/
 
 # Creates ignition files that will be passed on during VM node creation
 #  storage_template=$1
@@ -90,6 +101,7 @@ EOT
 #  ifcfg_base64_content=$4
 #  satellite_attach_template=$5
 #  host_ign_file=$6
+/*
 resource "null_resource" "create_ign_files" {
   for_each = { for i, hd in var.host_details : i => hd }
   provisioner "local-exec" {
@@ -98,3 +110,4 @@ resource "null_resource" "create_ign_files" {
 EOT
   }
 }
+*/
